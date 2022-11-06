@@ -18,7 +18,7 @@ spec:
       autoscaling.knative.dev/maxScale: "4"
   source:
     git:
-      url: https://github.com/vipinms2/where-for-dinner.git
+      url: https://github.com/vipinms2/hungryman.git
       ref:
         branch: main
     subPath: hungryman-api-gateway
@@ -56,7 +56,7 @@ spec:
       name: mysql-hungryman
   source:
     git:
-      url: https://github.com/vipinms2/where-for-dinner.git
+      url: https://github.com/vipinms2/hungryman.git
       ref:
         branch: main
     subPath: hungryman-search
@@ -83,7 +83,7 @@ spec:
       autoscaling.knative.dev/maxScale: "4"
   source:
     git:
-      url: https://github.com/vipinms2/where-for-dinner.git
+      url: https://github.com/vipinms2/hungryman.git
       ref:
         branch: main
     subPath: hungryman-search-proc
@@ -110,7 +110,7 @@ spec:
       autoscaling.knative.dev/maxScale: "4"
   source:
     git:
-      url: https://github.com/vipinms2/where-for-dinner.git
+      url: https://github.com/vipinms2/hungryman.git
       ref:
         branch: main
     subPath: hungryman-notify
@@ -147,7 +147,7 @@ spec:
       name: mysql-hungryman
   source:
     git:
-      url: https://github.com/vipinms2/where-for-dinner.git
+      url: https://github.com/vipinms2/hungryman.git
       ref:
         branch: main
     subPath: hungryman-availability
@@ -171,7 +171,7 @@ spec:
       autoscaling.knative.dev/minScale: "1"
   source:
     git:
-      url: https://github.com/vipinms2/where-for-dinner.git
+      url: https://github.com/vipinms2/hungryman.git
       ref:
         branch: main
     subPath: hungryman-ui

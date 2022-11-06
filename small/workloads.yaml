@@ -18,7 +18,7 @@ spec:
       autoscaling.knative.dev/maxScale: "4"
   source:
     git:
-      url: https://github.com/vipinms2/where-for-dinner.git
+      url: https://github.com/vipinms2/hungryman.git
       ref:
         branch: main
     subPath: hungryman-api-gateway
@@ -48,7 +48,7 @@ spec:
       name: rmq-hungryman
   source:
     git:
-      url: https://github.com/vipinms2/where-for-dinner.git
+      url: https://github.com/vipinms2/hungryman.git
       ref:
         branch: main
     subPath: hungryman-search
@@ -78,7 +78,7 @@ spec:
       name: rmq-hungryman
   source:
     git:
-      url: https://github.com/vipinms2/where-for-dinner.git
+      url: https://github.com/vipinms2/hungryman.git
       ref:
         branch: main
     subPath: hungryman-search-proc
@@ -108,7 +108,7 @@ spec:
       name: rmq-hungryman
   source:
     git:
-      url: https://github.com/vipinms2/where-for-dinner.git
+      url: https://github.com/vipinms2/hungryman.git
       ref:
         branch: main
     subPath: hungryman-availability
@@ -132,7 +132,7 @@ spec:
       autoscaling.knative.dev/maxScale: "4"
   source:
     git:
-      url: https://github.com/vipinms2/where-for-dinner.git
+      url: https://github.com/vipinms2/hungryman.git
       ref:
         branch: main
     subPath: hungryman-ui
