@@ -52,8 +52,6 @@ spec:
 ---
 apiVersion: services.apps.tanzu.vmware.com/v1alpha1
 kind: ResourceClaimPolicy
-#@ load("@ytt:data", "data")
----
 metadata:
   name: mysql-cross-namespace
   namespace: #@ data.values.workloadNamespace
