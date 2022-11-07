@@ -129,4 +129,4 @@ spec:
     parallelism: 5
     queueName: hungryman-search-criteria
   sink:
-    uri: http://broker-ingress.knative-eventing.svc.cluster.local/#@ data.values.workloadNamespace/hungryman
+    uri: #@ "http://broker-ingress.knative-eventing.svc.cluster.local/" + data.values.workloadNamespace + "/hungryman"
