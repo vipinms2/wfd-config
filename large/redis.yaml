@@ -18,14 +18,14 @@ metadata:
   name: redis-hungryman
   namespace: #@ data.values.workloadNamespace
   labels:
-    app: #@ "hungryman-large" + data.values.workloadNamespace
+    app: #@ "hungryman-" +  data.values.workloadNamespace
     service: redis-hungryman
 spec:
   ports:
   - port: 6379
     name: redis-client
   selector:
-    app: #@ "hungryman-large" + data.values.workloadNamespace
+    app: #@ "hungryman-" +  data.values.workloadNamespace
     service: redis-hungryman
 ---
 apiVersion: apps/v1
@@ -34,18 +34,18 @@ metadata:
   name: redis-hungryman
   namespace: #@ data.values.workloadNamespace
   labels:
-    app: #@ "hungryman-large" + data.values.workloadNamespace
+    app: #@ "hungryman-" +  data.values.workloadNamespace
     service: redis-hungryman
 spec:
   selector:
     matchLabels:
-      app: #@ "hungryman-large" + data.values.workloadNamespace
+      app: #@ "hungryman-" +  data.values.workloadNamespace
       service: redis-hungryman
   replicas: 1
   template:
     metadata:
       labels:
-        app: #@ "hungryman-large" + data.values.workloadNamespace
+        app: #@ "hungryman-" +  data.values.workloadNamespace
         service: redis-hungryman
     spec:
       containers:
