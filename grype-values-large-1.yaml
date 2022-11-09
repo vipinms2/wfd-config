@@ -1,0 +1,2 @@
+namespace: large-1
+targetImagePullSecret: registry-credentials
