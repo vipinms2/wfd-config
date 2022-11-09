@@ -17,7 +17,7 @@ spec:
   broker: hungryman
   filter:
     attributes:
-      source: /apis/v1/namespaces/#@ data.values.workloadNamespace/rabbitmqsources/hungryman-search-criteria-rabbit-source#hungryman-search-criteria
+      source: #@ "/apis/v1/namespaces/" + data.values.workloadNamespace + "/rabbitmqsources/hungryman-search-criteria-rabbit-source#hungryman-search-criteria"
   subscriber:
     ref:
       apiVersion: serving.knative.dev/v1
