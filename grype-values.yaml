@@ -1,4 +1,0 @@
-#@ load("@ytt:data", "data")
----
-namespace: #@ data.values.workloadNamespace
-targetImagePullSecret: registry-credentials
