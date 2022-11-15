@@ -65,11 +65,11 @@ spec:
 apiVersion: services.apps.tanzu.vmware.com/v1alpha1
 kind: ResourceClaim
 metadata:
-  name: mysql-hungryman
+  name: mysql-where-for-dinner
   namespace: #@ data.values.workloadNamespace
 spec:
   ref:
     apiVersion: with.sql.tanzu.vmware.com/v1
     kind: MySQL
-    name: mysql-hungryman
+    name: mysql-where-for-dinner
     namespace: #@ data.values.workloadNamespace

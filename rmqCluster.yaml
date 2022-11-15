@@ -5,7 +5,7 @@ kind: RabbitmqCluster
 metadata:
   annotations:
     rabbitmq.com/topology-allowed-namespaces: '*'
-  name: rmq-hungryman
+  name: rmq-where-for-dinner
   namespace: #@ data.values.workloadNamespace
 spec:
   replicas: 1

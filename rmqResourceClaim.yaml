@@ -59,11 +59,11 @@ spec:
 apiVersion: services.apps.tanzu.vmware.com/v1alpha1
 kind: ResourceClaim
 metadata:
-  name: rmq-hungryman
+  name: rmq-where-for-dinner
   namespace: #@ data.values.workloadNamespace
 spec:
   ref:
     apiVersion: rabbitmq.com/v1beta1
     kind: RabbitmqCluster
-    name: rmq-hungryman
+    name: rmq-where-for-dinner
     namespace: #@ data.values.workloadNamespace

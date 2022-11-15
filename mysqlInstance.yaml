@@ -3,7 +3,7 @@
 apiVersion: with.sql.tanzu.vmware.com/v1
 kind: MySQL
 metadata:
-  name: mysql-hungryman
+  name: mysql-where-for-dinner
   namespace: #@ data.values.workloadNamespace
 spec:
   imagePullSecretName: tanzunet-creds
@@ -23,7 +23,7 @@ spec:
               - key: app.kubernetes.io/instance
                 operator: In
                 values:
-                - hungryman
+                - where-for-dinner
     tolerations:
     - key: node.kubernetes.io/disk-pressure
       operator: Exists
@@ -45,7 +45,7 @@ spec:
               - key: app.kubernetes.io/instance
                 operator: In
                 values:
-                - hungryman
+                - where-for-dinner
     tolerations:
     - key: node.kubernetes.io/memory-pressure
       operator: Exists

@@ -42,11 +42,11 @@ spec:
 apiVersion: services.apps.tanzu.vmware.com/v1alpha1
 kind: ResourceClaim
 metadata:
-  name: postgres-hungryman
+  name: postgres-where-for-dinner
   namespace: #@ data.values.workloadNamespace
 spec:
   ref:
     apiVersion: sql.tanzu.vmware.com/v1
     kind: Postgres
-    name: postgres-hungryman
+    name: postgres-where-for-dinner
     namespace: #@ data.values.workloadNamespace

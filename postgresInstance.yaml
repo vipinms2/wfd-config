@@ -3,7 +3,7 @@
 apiVersion: sql.tanzu.vmware.com/v1
 kind: Postgres
 metadata:
-  name: postgres-hungryman
+  name: postgres-where-for-dinner
   namespace: #@ data.values.workloadNamespace
 spec:
   storageClassName: default

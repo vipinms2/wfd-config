@@ -3,11 +3,11 @@
 apiVersion: carto.run/v1alpha1
 kind: Workload
 metadata:
-  name: hungryman
+  name: where-for-dinner
   namespace: #@ data.values.workloadNamespace
   labels:
     apps.tanzu.vmware.com/workload-type: web
-    app.kubernetes.io/part-of: hungryman-api-gateway
+    app.kubernetes.io/part-of: where-for-dinner-api-gateway
     apps.tanzu.vmware.com/has-tests: "true"
 spec:
   params:
@@ -26,11 +26,11 @@ spec:
 apiVersion: carto.run/v1alpha1
 kind: Workload
 metadata:
-  name: hungryman-search
+  name: where-for-dinner-search
   namespace: #@ data.values.workloadNamespace
   labels:
     apps.tanzu.vmware.com/workload-type: web
-    app.kubernetes.io/part-of: hungryman-search
+    app.kubernetes.io/part-of: where-for-dinner-search
     networking.knative.dev/visibility: cluster-local
     apps.tanzu.vmware.com/has-tests: "true"
 spec:
@@ -48,12 +48,12 @@ spec:
     ref:
       apiVersion: services.apps.tanzu.vmware.com/v1alpha1
       kind: ResourceClaim
-      name: rmq-hungryman
+      name: rmq-where-for-dinner
   - name: db
     ref:
       apiVersion: services.apps.tanzu.vmware.com/v1alpha1
       kind: ResourceClaim
-      name: postgres-hungryman
+      name: postgres-where-for-dinner
   source:
     git:
       url: #@ data.values.gitRepository
@@ -64,11 +64,11 @@ spec:
 apiVersion: carto.run/v1alpha1
 kind: Workload
 metadata:
-  name: hungryman-search-proc
+  name: where-for-dinner-search-proc
   namespace: #@ data.values.workloadNamespace
   labels:
     apps.tanzu.vmware.com/workload-type: web
-    app.kubernetes.io/part-of: hungryman-search-proc
+    app.kubernetes.io/part-of: where-for-dinner-search-proc
     networking.knative.dev/visibility: cluster-local
     apps.tanzu.vmware.com/has-tests: "true"
 spec:
@@ -89,7 +89,7 @@ spec:
     ref:
       apiVersion: v1
       kind: Secret
-      name: redis-hungryman-redis-secret
+      name: redis-where-for-dinner-redis-secret
   source:
     git:
       url: #@ data.values.gitRepository
@@ -100,11 +100,11 @@ spec:
 apiVersion: carto.run/v1alpha1
 kind: Workload
 metadata:
-  name: hungryman-notify
+  name: where-for-dinner-notify
   namespace: #@ data.values.workloadNamespace
   labels:
     apps.tanzu.vmware.com/workload-type: web
-    app.kubernetes.io/part-of: hungryman-notify
+    app.kubernetes.io/part-of: where-for-dinner-notify
     networking.knative.dev/visibility: cluster-local
     apps.tanzu.vmware.com/has-tests: "true"
 spec:
@@ -127,11 +127,11 @@ spec:
 apiVersion: carto.run/v1alpha1
 kind: Workload
 metadata:
-  name: hungryman-availability
+  name: where-for-dinner-availability
   namespace: #@ data.values.workloadNamespace
   labels:
     apps.tanzu.vmware.com/workload-type: web
-    app.kubernetes.io/part-of: hungryman-availability
+    app.kubernetes.io/part-of: where-for-dinner-availability
     networking.knative.dev/visibility: cluster-local
     apps.tanzu.vmware.com/has-tests: "true"
 spec:
@@ -153,7 +153,7 @@ spec:
     ref:
       apiVersion: services.apps.tanzu.vmware.com/v1alpha1
       kind: ResourceClaim
-      name: postgres-hungryman
+      name: postgres-where-for-dinner
   source:
     git:
       url: #@ data.values.gitRepository
@@ -164,11 +164,11 @@ spec:
 apiVersion: carto.run/v1alpha1
 kind: Workload
 metadata:
-  name: hungryman-ui
+  name: where-for-dinner-ui
   namespace: #@ data.values.workloadNamespace
   labels:
     apps.tanzu.vmware.com/workload-type: web
-    app.kubernetes.io/part-of: hungryman-ui
+    app.kubernetes.io/part-of: where-for-dinner-ui
     networking.knative.dev/visibility: cluster-local
     apps.tanzu.vmware.com/has-tests: "true"
 spec:
@@ -188,11 +188,11 @@ spec:
 apiVersion: carto.run/v1alpha1
 kind: Workload
 metadata:
-  name: hungryman-crawler
+  name: where-for-dinner-crawler
   namespace: #@ data.values.workloadNamespace
   labels:
     apps.tanzu.vmware.com/workload-type: server
-    app.kubernetes.io/part-of: hungryman-crawler
+    app.kubernetes.io/part-of: where-for-dinner-crawler
     apps.tanzu.vmware.com/has-tests: "true"
 spec:
   params:
