@@ -11,7 +11,7 @@ kind: Trigger
 metadata:
   labels:
     eventing.knative.dev/broker: where-for-dinner
-  name: hungrman-search-proc
+  name: where-for-dinner-search-proc
   namespace: #@ data.values.workloadNamespace
 spec:
   broker: where-for-dinner
@@ -30,7 +30,7 @@ kind: Trigger
 metadata:
   labels:
     eventing.knative.dev/broker: where-for-dinner
-  name: hungrman-notify
+  name: where-for-dinner-notify
   namespace: #@ data.values.workloadNamespace
 spec:
   broker: where-for-dinner
@@ -50,7 +50,7 @@ kind: Trigger
 metadata:
   labels:
     eventing.knative.dev/broker: where-for-dinner
-  name: hungrman-availability
+  name: where-for-dinner-availability
   namespace: #@ data.values.workloadNamespace
 spec:
   broker: where-for-dinner
