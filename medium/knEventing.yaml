@@ -86,7 +86,7 @@ kind: Queue
 metadata:
   labels:
     eventing.knative.dev/SourceName: where-for-dinner-search-criteria-rabbit-source
-  name: where-for-dinner-search-criteria-queue
+  name: where-for-dinner-search-criteria
   namespace: #@ data.values.workloadNamespace
 spec:
   durable: true
