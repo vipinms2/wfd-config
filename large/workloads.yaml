@@ -16,6 +16,13 @@ spec:
       autoscaling.knative.dev/minScale: "1"
       autoscaling.knative.dev/target: "200"
       autoscaling.knative.dev/maxScale: "4"
+  resources:
+    requests:
+      memory: 1.0G
+      cpu: 1000m
+    limits:
+      memory: 3.0G
+      cpu: 2000m
   source:
     git:
       url: #@ data.values.gitRepository
@@ -54,6 +61,13 @@ spec:
       apiVersion: services.apps.tanzu.vmware.com/v1alpha1
       kind: ResourceClaim
       name: postgres-where-for-dinner
+  resources:
+    requests:
+      memory: 1.0G
+      cpu: 1000m
+    limits:
+      memory: 3.0G
+      cpu: 2000m
   source:
     git:
       url: #@ data.values.gitRepository
@@ -90,6 +104,13 @@ spec:
       apiVersion: v1
       kind: Secret
       name: redis-where-for-dinner-redis-secret
+  resources:
+    requests:
+      memory: 1.0G
+      cpu: 1000m
+    limits:
+      memory: 3.0G
+      cpu: 2000m
   source:
     git:
       url: #@ data.values.gitRepository
@@ -117,6 +138,13 @@ spec:
     value:
       autoscaling.knative.dev/target: "200"
       autoscaling.knative.dev/maxScale: "4"
+  resources:
+    requests:
+      memory: 1.0G
+      cpu: 1000m
+    limits:
+      memory: 3.0G
+      cpu: 2000m
   source:
     git:
       url: #@ data.values.gitRepository
@@ -154,6 +182,13 @@ spec:
       apiVersion: services.apps.tanzu.vmware.com/v1alpha1
       kind: ResourceClaim
       name: postgres-where-for-dinner
+  resources:
+    requests:
+      memory: 1.0G
+      cpu: 1000m
+    limits:
+      memory: 3.0G
+      cpu: 2000m
   source:
     git:
       url: #@ data.values.gitRepository
@@ -178,6 +213,13 @@ spec:
       autoscaling.knative.dev/target: "200"
       autoscaling.knative.dev/maxScale: "4"
       autoscaling.knative.dev/minScale: "1"
+  resources:
+    requests:
+      memory: 1.0G
+      cpu: 1000m
+    limits:
+      memory: 3.0G
+      cpu: 2000m
   source:
     git:
       url: #@ data.values.gitRepository
@@ -201,6 +243,13 @@ spec:
     - port: 80
       containerPort: 8080
       name: http
+  resources:
+    requests:
+      memory: 1.0G
+      cpu: 1000m
+    limits:
+      memory: 3.0G
+      cpu: 2000m
   source:
     git:
       url: #@ data.values.gitRepository
