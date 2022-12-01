@@ -43,7 +43,7 @@ metadata:
 spec:
   env:
   - name: spring_profiles_active
-    value: mysql
+    value: #@ data.values.database
   params:
   - name: annotations
     value:
@@ -60,7 +60,7 @@ spec:
     ref:
       apiVersion: services.apps.tanzu.vmware.com/v1alpha1
       kind: ResourceClaim
-      name: mysql-where-for-dinner
+      name: #@ data.values.database + "-where-for-dinner"
   resources:     
     requests:         
       memory: "250M"
@@ -160,7 +160,7 @@ spec:
       value: -P native -Dmaven.test.skip=true --no-transfer-progress package
   env:
   - name: spring_profiles_active
-    value: mysql
+    value: #@ data.values.database
   params:
   - name: annotations
     value:
@@ -172,7 +172,7 @@ spec:
     ref:
       apiVersion: services.apps.tanzu.vmware.com/v1alpha1
       kind: ResourceClaim
-      name: mysql-where-for-dinner
+      name: #@ data.values.database + "-where-for-dinner"
   resources:     
     requests:         
       memory: "250M"
