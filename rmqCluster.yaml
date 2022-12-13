@@ -9,5 +9,8 @@ metadata:
   namespace: #@ data.values.workloadNamespace
 spec:
   replicas: 1
-  imagePullSecrets:
-  - name: tanzunet-creds
+  resources:
+    requests:
+      cpu: 200m
+    limits:
+      cpu: 200m
