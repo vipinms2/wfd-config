@@ -18,7 +18,7 @@ spec:
       autoscaling.knative.dev/maxScale: "4"
   resources:     
     requests:         
-      memory: "250M"
+      memory: "1G"
       cpu: "100m"
     limits:         
       memory: "1.5G"
@@ -63,11 +63,11 @@ spec:
       name: #@ data.values.database + "-where-for-dinner"
   resources:     
     requests:         
-      memory: "250M"
+      memory: "1G"
       cpu: "100m"
     limits:         
       memory: "1.5G"
-      cpu: "1000m" 
+      cpu: "1500m" 
   source:
     git:
       url: #@ data.values.gitRepository
@@ -97,7 +97,7 @@ spec:
       autoscaling.knative.dev/maxScale: "4"
   resources:     
     requests:         
-      memory: "250M"
+      memory: "1G"
       cpu: "100m"
     limits:         
       memory: "1.5G"
@@ -131,7 +131,7 @@ spec:
       autoscaling.knative.dev/maxScale: "4"
   resources:     
     requests:         
-      memory: "250M"
+      memory: "1G"
       cpu: "100m"
     limits:         
       memory: "1.5G"
@@ -175,11 +175,11 @@ spec:
       name: #@ data.values.database + "-where-for-dinner"
   resources:     
     requests:         
-      memory: "250M"
+      memory: "1G"
       cpu: "100m"
     limits:         
       memory: "1.5G"
-      cpu: "1000m" 
+      cpu: "1500m" 
   source:
     git:
       url: #@ data.values.gitRepository
@@ -206,7 +206,7 @@ spec:
       autoscaling.knative.dev/minScale: "1"
   resources:     
     requests:         
-      memory: "250M"
+      memory: "1G"
       cpu: "100m"
     limits:         
       memory: "1.5G"
