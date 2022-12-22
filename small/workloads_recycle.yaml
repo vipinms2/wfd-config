@@ -36,31 +36,23 @@ metadata:
   name: where-for-dinner-search
   namespace: #@ data.values.workloadNamespace
   labels:
-    apps.tanzu.vmware.com/workload-type: web
+    apps.tanzu.vmware.com/workload-type: server
     app.kubernetes.io/part-of: where-for-dinner-search
     networking.knative.dev/visibility: cluster-local
     apps.tanzu.vmware.com/has-tests: "true"
 spec:
-  env:
-  - name: spring_profiles_active
-    value: #@ data.values.database
   params:
-  - name: annotations
+  - name: ports
     value:
-      autoscaling.knative.dev/target: "200"
-      autoscaling.knative.dev/maxScale: "4"
-      autoscaling.knative.dev/minScale: "1"
+    - port: 80
+      containerPort: 8080
+      name: http
   serviceClaims:
   - name: rmq
     ref:
       apiVersion: services.apps.tanzu.vmware.com/v1alpha1
       kind: ResourceClaim
       name: rmq-where-for-dinner
-  - name: db
-    ref:
-      apiVersion: services.apps.tanzu.vmware.com/v1alpha1
-      kind: ResourceClaim
-      name: #@ data.values.database + "-where-for-dinner"
   resources:     
     requests:         
       memory: "500M"
@@ -81,29 +73,23 @@ metadata:
   name: where-for-dinner-search-proc
   namespace: #@ data.values.workloadNamespace
   labels:
-    apps.tanzu.vmware.com/workload-type: web
+    apps.tanzu.vmware.com/workload-type: worker
     app.kubernetes.io/part-of: where-for-dinner-search-proc
     networking.knative.dev/visibility: cluster-local
     apps.tanzu.vmware.com/has-tests: "true"
 spec:
-  build:
-    env:
-    - name: BP_MAVEN_BUILD_ARGUMENTS
-      value: -P native -Dmaven.test.skip=true --no-transfer-progress package
   params:
   - name: annotations
     value:
+      autoscaling.knative.dev/minScale: "1"
       autoscaling.knative.dev/target: "200"
       autoscaling.knative.dev/maxScale: "4"
-  env:
-  - name: spring_profiles_active
-    value: crawler,redis
   serviceClaims:
-  - name: redis
+  - name: rmq
     ref:
-      apiVersion: v1
-      kind: Secret
-      name: redis-where-for-dinner-redis-secret
+      apiVersion: services.apps.tanzu.vmware.com/v1alpha1
+      kind: ResourceClaim
+      name: rmq-where-for-dinner
   resources:     
     requests:         
       memory: "500M"
@@ -121,67 +107,26 @@ spec:
 apiVersion: carto.run/v1alpha1
 kind: Workload
 metadata:
-  name: where-for-dinner-notify
-  namespace: #@ data.values.workloadNamespace
-  labels:
-    apps.tanzu.vmware.com/workload-type: web
-    app.kubernetes.io/part-of: where-for-dinner-notify
-    networking.knative.dev/visibility: cluster-local
-    apps.tanzu.vmware.com/has-tests: "true"
-spec:
-  build:
-    env:
-    - name: BP_MAVEN_BUILD_ARGUMENTS
-      value: -P native -Dmaven.test.skip=true --no-transfer-progress package
-  params:
-  - name: annotations
-    value:
-      autoscaling.knative.dev/target: "200"
-      autoscaling.knative.dev/maxScale: "4"
-  resources:     
-    requests:         
-      memory: "500M"
-      cpu: "100m"
-    limits:         
-      memory: "750M"
-      cpu: "1000m" 
-  source:
-    git:
-      url: #@ data.values.gitRepository
-      ref:
-        branch: main
-    subPath: where-for-dinner-notify
----
-apiVersion: carto.run/v1alpha1
-kind: Workload
-metadata:
   name: where-for-dinner-availability
   namespace: #@ data.values.workloadNamespace
   labels:
-    apps.tanzu.vmware.com/workload-type: web
+    apps.tanzu.vmware.com/workload-type: server
     app.kubernetes.io/part-of: where-for-dinner-availability
     networking.knative.dev/visibility: cluster-local
     apps.tanzu.vmware.com/has-tests: "true"
 spec:
-  build:
-    env:
-    - name: BP_MAVEN_BUILD_ARGUMENTS
-      value: -P native -Dmaven.test.skip=true --no-transfer-progress package
-  env:
-  - name: spring_profiles_active
-    value: #@ data.values.database
   params:
-  - name: annotations
+  - name: ports
     value:
-      autoscaling.knative.dev/target: "200"
-      autoscaling.knative.dev/maxScale: "4"
-      autoscaling.knative.dev/minScale: "1"
+    - port: 80
+      containerPort: 8080
+      name: http
   serviceClaims:
-  - name: db
+  - name: rmq
     ref:
       apiVersion: services.apps.tanzu.vmware.com/v1alpha1
       kind: ResourceClaim
-      name: #@ data.values.database + "-where-for-dinner"
+      name: rmq-where-for-dinner
   resources:     
     requests:         
       memory: "500M"
@@ -202,46 +147,16 @@ metadata:
   name: where-for-dinner-ui
   namespace: #@ data.values.workloadNamespace
   labels:
-    apps.tanzu.vmware.com/workload-type: web
+    apps.tanzu.vmware.com/workload-type: server
     app.kubernetes.io/part-of: where-for-dinner-ui
     networking.knative.dev/visibility: cluster-local
-    apps.tanzu.vmware.com/has-tests: "true"
-spec:
-  params:
-  - name: annotations
-    value:
-      autoscaling.knative.dev/target: "200"
-      autoscaling.knative.dev/maxScale: "4"
-      autoscaling.knative.dev/minScale: "1"
-  resources:     
-    requests:         
-      memory: "500M"
-      cpu: "100m"
-    limits:         
-      memory: "750M"
-      cpu: "1000m" 
-  source:
-    git:
-      url: #@ data.values.gitRepository
-      ref:
-        branch: main
-    subPath: where-for-dinner-ui
----
-apiVersion: carto.run/v1alpha1
-kind: Workload
-metadata:
-  name: where-for-dinner-crawler
-  namespace: #@ data.values.workloadNamespace
-  labels:
-    apps.tanzu.vmware.com/workload-type: server
-    app.kubernetes.io/part-of: where-for-dinner-crawler
     apps.tanzu.vmware.com/has-tests: "true"
 spec:
   params:
   - name: ports
     value:
     - port: 80
-      containerPort: 8080
+      containerPort: 3000
       name: http
   resources:     
     requests:         
@@ -255,4 +170,4 @@ spec:
       url: #@ data.values.gitRepository
       ref:
         branch: main
-    subPath: where-for-dinner-crawler
+    subPath: where-for-dinner-ui

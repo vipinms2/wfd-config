@@ -18,10 +18,10 @@ spec:
       autoscaling.knative.dev/maxScale: "4"
   resources:     
     requests:         
-      memory: "1G"
+      memory: "500M"
       cpu: "100m"
     limits:         
-      memory: "1.5G"
+      memory: "750M"
       cpu: "1000m" 
   source:
     git:
@@ -55,10 +55,10 @@ spec:
       name: rmq-where-for-dinner
   resources:     
     requests:         
-      memory: "1G"
+      memory: "500M"
       cpu: "100m"
     limits:         
-      memory: "1.5G"
+      memory: "750M"
       cpu: "1500m" 
   source:
     git:
@@ -92,11 +92,11 @@ spec:
       name: rmq-where-for-dinner
   resources:     
     requests:         
-      memory: "1G"
+      memory: "500M"
       cpu: "100m"
     limits:         
-      memory: "1.5G"
-      cpu: "1000m" 
+      memory: "750M"
+      cpu: "1500m" 
   source:
     git:
       url: #@ data.values.gitRepository
@@ -129,10 +129,10 @@ spec:
       name: rmq-where-for-dinner
   resources:     
     requests:         
-      memory: "1G"
+      memory: "500M"
       cpu: "100m"
     limits:         
-      memory: "1.5G"
+      memory: "750M"
       cpu: "1500m" 
   source:
     git:
@@ -160,10 +160,10 @@ spec:
       autoscaling.knative.dev/maxScale: "4"
   resources:     
     requests:         
-      memory: "1G"
+      memory: "500M"
       cpu: "100m"
     limits:         
-      memory: "1.5G"
+      memory: "750M"
       cpu: "1000m" 
   source:
     git:
