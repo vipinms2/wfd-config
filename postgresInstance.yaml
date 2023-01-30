@@ -14,4 +14,4 @@ spec:
   highAvailability:
     enabled: false
   imagePullSecret:
-    name: tanzunet-creds
+    name: tap-install

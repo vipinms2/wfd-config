@@ -9,6 +9,7 @@ metadata:
     apps.tanzu.vmware.com/workload-type: web
     app.kubernetes.io/part-of: where-for-dinner-api-gateway
     apps.tanzu.vmware.com/has-tests: "true"
+    apps.tanzu.vmware.com/auto-configure-actuators: "true"
 spec:
   params:
   - name: annotations
@@ -23,6 +24,10 @@ spec:
     limits:         
       memory: "750M"
       cpu: "1000m" 
+  build:
+    env:
+      - name: BP_JVM_VERSION
+        value: "17"  
   source:
     git:
       url: #@ data.values.gitRepository
@@ -40,6 +45,7 @@ metadata:
     app.kubernetes.io/part-of: where-for-dinner-search
     networking.knative.dev/visibility: cluster-local
     apps.tanzu.vmware.com/has-tests: "true"
+    apps.tanzu.vmware.com/auto-configure-actuators: "true"
 spec:
   env:
   - name: spring_profiles_active
@@ -68,6 +74,10 @@ spec:
     limits:         
       memory: "750M"
       cpu: "1500m" 
+  build:
+    env:
+      - name: BP_JVM_VERSION
+        value: "17"  
   source:
     git:
       url: #@ data.values.gitRepository
@@ -85,11 +95,14 @@ metadata:
     app.kubernetes.io/part-of: where-for-dinner-search-proc
     networking.knative.dev/visibility: cluster-local
     apps.tanzu.vmware.com/has-tests: "true"
+    apps.tanzu.vmware.com/auto-configure-actuators: "true"
 spec:
   build:
     env:
     - name: BP_MAVEN_BUILD_ARGUMENTS
       value: -P native -Dmaven.test.skip=true --no-transfer-progress package
+    - name: BP_JVM_VERSION
+      value: "17"
   params:
   - name: annotations
     value:
@@ -128,11 +141,14 @@ metadata:
     app.kubernetes.io/part-of: where-for-dinner-notify
     networking.knative.dev/visibility: cluster-local
     apps.tanzu.vmware.com/has-tests: "true"
+    apps.tanzu.vmware.com/auto-configure-actuators: "true"
 spec:
   build:
     env:
     - name: BP_MAVEN_BUILD_ARGUMENTS
       value: -P native -Dmaven.test.skip=true --no-transfer-progress package
+    - name: BP_JVM_VERSION
+      value: "17"
   params:
   - name: annotations
     value:
@@ -162,11 +178,14 @@ metadata:
     app.kubernetes.io/part-of: where-for-dinner-availability
     networking.knative.dev/visibility: cluster-local
     apps.tanzu.vmware.com/has-tests: "true"
+    apps.tanzu.vmware.com/auto-configure-actuators: "true"
 spec:
   build:
     env:
     - name: BP_MAVEN_BUILD_ARGUMENTS
       value: -P native -Dmaven.test.skip=true --no-transfer-progress package
+    - name: BP_JVM_VERSION
+      value: "17"
   env:
   - name: spring_profiles_active
     value: #@ data.values.database
@@ -207,6 +226,12 @@ metadata:
     networking.knative.dev/visibility: cluster-local
     apps.tanzu.vmware.com/has-tests: "true"
 spec:
+  build:
+    env:
+    - name: BP_NODE_RUN_SCRIPTS
+      value: build
+    - name: BP_WEB_SERVER_ROOT
+      value: dist
   params:
   - name: annotations
     value:
@@ -236,6 +261,7 @@ metadata:
     apps.tanzu.vmware.com/workload-type: server
     app.kubernetes.io/part-of: where-for-dinner-crawler
     apps.tanzu.vmware.com/has-tests: "true"
+    apps.tanzu.vmware.com/auto-configure-actuators: "true"
 spec:
   params:
   - name: ports
@@ -250,6 +276,10 @@ spec:
     limits:         
       memory: "750M"
       cpu: "1000m" 
+  build:
+    env:
+    - name: BP_JVM_VERSION
+      value: "17"
   source:
     git:
       url: #@ data.values.gitRepository
