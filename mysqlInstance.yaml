@@ -6,7 +6,7 @@ metadata:
   name: mysql-where-for-dinner
   namespace: #@ data.values.workloadNamespace
 spec:
-  imagePullSecretName: tap-install
+  imagePullSecretName: registries-credentials
   databasePodConfig:
     affinity:
       podAntiAffinity:
