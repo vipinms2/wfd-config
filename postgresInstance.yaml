@@ -6,8 +6,8 @@ metadata:
   name: postgres-where-for-dinner
   namespace: #@ data.values.workloadNamespace
 spec:
-  storageClassName: default
-  monitorStorageClassName: default
+  storageClassName: #@ data.values.storageClassName
+  monitorStorageClassName: #@ data.values.storageClassName
   memory: 800Mi
   cpu: "0.8"
   storageSize: 800M
