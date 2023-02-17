@@ -1,0 +1,39 @@
+apiVersion: carto.run/v1alpha1
+kind: Workload
+metadata:
+  name: where-for-dinner-search-proc
+  labels:
+    apps.tanzu.vmware.com/workload-type: worker
+    app.kubernetes.io/part-of: where-for-dinner-search-proc
+    networking.knative.dev/visibility: cluster-local
+    apps.tanzu.vmware.com/auto-configure-actuators: "true"
+spec:
+  params:
+  - name: annotations
+    value:
+      autoscaling.knative.dev/minScale: "1"
+      autoscaling.knative.dev/target: "200"
+      autoscaling.knative.dev/maxScale: "4"
+  serviceClaims:
+  - name: rmq
+    ref:
+      apiVersion: services.apps.tanzu.vmware.com/v1alpha1
+      kind: ResourceClaim
+      name: rmq-where-for-dinner
+  resources:     
+    requests:         
+      memory: "500M"
+      cpu: "100m"
+    limits:         
+      memory: "750M"
+      cpu: "1500m" 
+  build:
+    env:
+    - name: BP_JVM_VERSION
+      value: "17"
+  source:
+    git:
+      url: <https URL for your generated project's Git repository>
+      ref:
+        branch: main
+    subPath: where-for-dinner-search-proc
