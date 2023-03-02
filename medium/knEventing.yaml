@@ -36,7 +36,7 @@ spec:
   broker: where-for-dinner
   filter:
     attributes:
-      source: http://spring.io/where-for-dinner-search-proc/
+      source: http://spring.io/where-for-dinner-search-proc
       type: com.java.example.tanzu.wherefordinner.model.Availability
   subscriber:
     ref:
@@ -56,7 +56,7 @@ spec:
   broker: where-for-dinner
   filter:
     attributes:
-      source: http://spring.io/where-for-dinner-search-proc/
+      source: http://spring.io/where-for-dinner-search-proc
       type: com.java.example.tanzu.wherefordinner.model.Availability
   subscriber:
     ref:
