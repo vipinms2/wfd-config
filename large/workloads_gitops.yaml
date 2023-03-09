@@ -18,7 +18,7 @@ spec:
     value: vipinms2
   - name: gitops_repository_name
     value: gitops
-  - name: git-ssh
+  - name: gitops_ssh_secret
     value: git-ssh
   - name: annotations
     value:
@@ -65,7 +65,7 @@ spec:
     value: vipinms2
   - name: gitops_repository_name
     value: gitops
-  - name: git-ssh
+  - name: gitops_ssh_secret
     value: git-ssh
   - name: annotations
     value:
@@ -126,7 +126,7 @@ spec:
     value: vipinms2
   - name: gitops_repository_name
     value: gitops
-  - name: git-ssh
+  - name: gitops_ssh_secret
     value: git-ssh
   - name: annotations
     value:
@@ -180,7 +180,7 @@ spec:
     value: vipinms2
   - name: gitops_repository_name
     value: gitops
-  - name: git-ssh
+  - name: gitops_ssh_secret
     value: git-ssh
   - name: annotations
     value:
@@ -228,7 +228,7 @@ spec:
     value: vipinms2
   - name: gitops_repository_name
     value: gitops
-  - name: git-ssh
+  - name: gitops_ssh_secret
     value: git-ssh
   - name: annotations
     value:
@@ -279,7 +279,7 @@ spec:
     value: vipinms2
   - name: gitops_repository_name
     value: gitops
-  - name: git-ssh
+  - name: gitops_ssh_secret
     value: git-ssh
   - name: annotations
     value:
@@ -320,7 +320,7 @@ spec:
     value: vipinms2
   - name: gitops_repository_name
     value: gitops
-  - name: git-ssh
+  - name: gitops_ssh_secret
     value: git-ssh
   - name: ports
     value:

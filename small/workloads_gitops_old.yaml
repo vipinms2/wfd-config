@@ -13,11 +13,7 @@ metadata:
 spec:
   params:
   - name: gitops_server_address
-    value: https://github.com/
-  - name: gitops_repository_owner
-    value: vipinms2
-  - name: gitops_repository_name
-    value: gitops
+    value: https://github.com/vipinms2/gitops.git
   - name: gitops_ssh_secret
     value: git-ssh
   - name: annotations
@@ -35,7 +31,7 @@ spec:
   build:
     env:
       - name: BP_JVM_VERSION
-        value: "17" 
+        value: "17"  
   source:
     git:
       url: #@ data.values.gitRepository
@@ -55,34 +51,22 @@ metadata:
     apps.tanzu.vmware.com/has-tests: "true"
     apps.tanzu.vmware.com/auto-configure-actuators: "true"
 spec:
-  env:
-  - name: spring_profiles_active
-    value: #@ data.values.database
   params:
   - name: gitops_server_address
-    value: https://github.com/
-  - name: gitops_repository_owner
-    value: vipinms2
-  - name: gitops_repository_name
-    value: gitops
+    value: https://github.com/vipinms2/gitops.git
   - name: gitops_ssh_secret
     value: git-ssh
   - name: annotations
     value:
+      autoscaling.knative.dev/minScale: "1"
       autoscaling.knative.dev/target: "200"
       autoscaling.knative.dev/maxScale: "4"
-      autoscaling.knative.dev/minScale: "1"
   serviceClaims:
   - name: rmq
     ref:
       apiVersion: services.apps.tanzu.vmware.com/v1alpha1
       kind: ResourceClaim
       name: rmq-where-for-dinner
-  - name: db
-    ref:
-      apiVersion: services.apps.tanzu.vmware.com/v1alpha1
-      kind: ResourceClaim
-      name: #@ data.values.database + "-where-for-dinner"
   resources:     
     requests:         
       memory: "500M"
@@ -93,7 +77,7 @@ spec:
   build:
     env:
       - name: BP_JVM_VERSION
-        value: "17" 
+        value: "17"  
   source:
     git:
       url: #@ data.values.gitRepository
@@ -113,25 +97,22 @@ metadata:
     apps.tanzu.vmware.com/has-tests: "true"
     apps.tanzu.vmware.com/auto-configure-actuators: "true"
 spec:
-  build:
-    env:
-    - name: BP_MAVEN_BUILD_ARGUMENTS
-      value: -P native -Dmaven.test.skip=true --no-transfer-progress package
-    - name: BP_JVM_VERSION
-      value: "17"
   params:
   - name: gitops_server_address
-    value: https://github.com/
-  - name: gitops_repository_owner
-    value: vipinms2
-  - name: gitops_repository_name
-    value: gitops
+    value: https://github.com/vipinms2/gitops.git
   - name: gitops_ssh_secret
     value: git-ssh
   - name: annotations
     value:
+      autoscaling.knative.dev/minScale: "1"
       autoscaling.knative.dev/target: "200"
       autoscaling.knative.dev/maxScale: "4"
+  serviceClaims:
+  - name: rmq
+    ref:
+      apiVersion: services.apps.tanzu.vmware.com/v1alpha1
+      kind: ResourceClaim
+      name: rmq-where-for-dinner
   resources:     
     requests:         
       memory: "500M"
@@ -139,57 +120,16 @@ spec:
     limits:         
       memory: "750M"
       cpu: "1500m" 
+  build:
+    env:
+      - name: BP_JVM_VERSION
+        value: "17"  
   source:
     git:
       url: #@ data.values.gitRepository
       ref:
         branch: main
     subPath: where-for-dinner-search-proc
----
-apiVersion: carto.run/v1alpha1
-kind: Workload
-metadata:
-  name: where-for-dinner-notify
-  namespace: #@ data.values.workloadNamespace
-  labels:
-    apps.tanzu.vmware.com/workload-type: web
-    app.kubernetes.io/part-of: where-for-dinner-notify
-    networking.knative.dev/visibility: cluster-local
-    apps.tanzu.vmware.com/has-tests: "true"
-    apps.tanzu.vmware.com/auto-configure-actuators: "true"
-spec:
-  build:
-    env:
-    - name: BP_MAVEN_BUILD_ARGUMENTS
-      value: -P native -Dmaven.test.skip=true --no-transfer-progress package
-    - name: BP_JVM_VERSION
-      value: "17"
-  params:
-  - name: gitops_server_address
-    value: https://github.com/
-  - name: gitops_repository_owner
-    value: vipinms2
-  - name: gitops_repository_name
-    value: gitops
-  - name: gitops_ssh_secret
-    value: git-ssh
-  - name: annotations
-    value:
-      autoscaling.knative.dev/target: "200"
-      autoscaling.knative.dev/maxScale: "4"
-  resources:     
-    requests:         
-      memory: "500M"
-      cpu: "100m"
-    limits:         
-      memory: "750M"
-      cpu: "1000m" 
-  source:
-    git:
-      url: #@ data.values.gitRepository
-      ref:
-        branch: main
-    subPath: where-for-dinner-notify
 ---
 apiVersion: carto.run/v1alpha1
 kind: Workload
@@ -203,35 +143,22 @@ metadata:
     apps.tanzu.vmware.com/has-tests: "true"
     apps.tanzu.vmware.com/auto-configure-actuators: "true"
 spec:
-  build:
-    env:
-    - name: BP_MAVEN_BUILD_ARGUMENTS
-      value: -P native -Dmaven.test.skip=true --no-transfer-progress package
-    - name: BP_JVM_VERSION
-      value: "17"
-  env:
-  - name: spring_profiles_active
-    value: #@ data.values.database
   params:
   - name: gitops_server_address
-    value: https://github.com/
-  - name: gitops_repository_owner
-    value: vipinms2
-  - name: gitops_repository_name
-    value: gitops
+    value: https://github.com/vipinms2/gitops.git
   - name: gitops_ssh_secret
     value: git-ssh
   - name: annotations
     value:
+      autoscaling.knative.dev/minScale: "1"
       autoscaling.knative.dev/target: "200"
       autoscaling.knative.dev/maxScale: "4"
-      autoscaling.knative.dev/minScale: "1"
   serviceClaims:
-  - name: db
+  - name: rmq
     ref:
       apiVersion: services.apps.tanzu.vmware.com/v1alpha1
       kind: ResourceClaim
-      name: #@ data.values.database + "-where-for-dinner"
+      name: rmq-where-for-dinner
   resources:     
     requests:         
       memory: "500M"
@@ -239,6 +166,10 @@ spec:
     limits:         
       memory: "750M"
       cpu: "1500m" 
+  build:
+    env:
+      - name: BP_JVM_VERSION
+        value: "17"  
   source:
     git:
       url: #@ data.values.gitRepository
@@ -256,7 +187,6 @@ metadata:
     app.kubernetes.io/part-of: where-for-dinner-ui
     networking.knative.dev/visibility: cluster-local
     apps.tanzu.vmware.com/has-tests: "true"
-    apps.tanzu.vmware.com/auto-configure-actuators: "true"
 spec:
   build:
     env:
@@ -266,27 +196,23 @@ spec:
       value: dist
   params:
   - name: gitops_server_address
-    value: https://github.com/
-  - name: gitops_repository_owner
-    value: vipinms2
-  - name: gitops_repository_name
-    value: gitops
+    value: https://github.com/vipinms2/gitops.git
   - name: gitops_ssh_secret
     value: git-ssh
   - name: annotations
     value:
+      autoscaling.knative.dev/minScale: "1"
       autoscaling.knative.dev/target: "200"
       autoscaling.knative.dev/maxScale: "4"
-      autoscaling.knative.dev/minScale: "1"
   - name: clusterBuilder
-    value: full 
+    value: full
   resources:     
     requests:         
       memory: "500M"
       cpu: "100m"
     limits:         
       memory: "750M"
-      cpu: "1000m"  
+      cpu: "1000m" 
   source:
     git:
       url: #@ data.values.gitRepository
