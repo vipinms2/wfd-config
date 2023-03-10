@@ -13,7 +13,7 @@ metadata:
 spec:
   params:
   - name: gitops_server_address
-    value: https://github.com/vipinms2/gitops.git
+    value: https://github.com/vipinms2/gitops
   - name: gitops_ssh_secret
     value: git-ssh
   - name: annotations
@@ -53,7 +53,7 @@ metadata:
 spec:
   params:
   - name: gitops_server_address
-    value: https://github.com/vipinms2/gitops.git
+    value: https://github.com/vipinms2/gitops
   - name: gitops_ssh_secret
     value: git-ssh
   - name: annotations
@@ -99,7 +99,7 @@ metadata:
 spec:
   params:
   - name: gitops_server_address
-    value: https://github.com/vipinms2/gitops.git
+    value: https://github.com/vipinms2/gitops
   - name: gitops_ssh_secret
     value: git-ssh
   - name: annotations
@@ -145,7 +145,7 @@ metadata:
 spec:
   params:
   - name: gitops_server_address
-    value: https://github.com/vipinms2/gitops.git
+    value: https://github.com/vipinms2/gitops
   - name: gitops_ssh_secret
     value: git-ssh
   - name: annotations
@@ -196,7 +196,7 @@ spec:
       value: dist
   params:
   - name: gitops_server_address
-    value: https://github.com/vipinms2/gitops.git
+    value: https://github.com/vipinms2/gitops
   - name: gitops_ssh_secret
     value: git-ssh
   - name: annotations
