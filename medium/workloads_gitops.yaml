@@ -278,8 +278,7 @@ spec:
       autoscaling.knative.dev/target: "200"
       autoscaling.knative.dev/maxScale: "4"
       autoscaling.knative.dev/minScale: "1"
-  - name: clusterBuilder
-    value: full 
+ 
   resources:     
     requests:         
       memory: "500M"
