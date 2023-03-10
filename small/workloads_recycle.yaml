@@ -184,6 +184,8 @@ spec:
     - port: 80
       containerPort: 8080
       name: http
+  - name: clusterBuilder
+    value: full
   resources:     
     requests:         
       memory: "500M"
