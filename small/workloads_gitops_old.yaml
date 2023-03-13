@@ -13,7 +13,7 @@ metadata:
 spec:
   params:
   - name: gitops_repository
-    value: https://github.com/vipinms2/gitops/small/where-for-dinner
+    value: https://github.com/vipinms2/gitops_small
   - name: gitops_ssh_secret
     value: git-ssh
   - name: annotations
@@ -53,7 +53,7 @@ metadata:
 spec:
   params:
   - name: gitops_repository
-    value: https://github.com/vipinms2/gitops/small/where-for-dinner-search
+    value: https://github.com/vipinms2/gitops_small
   - name: gitops_ssh_secret
     value: git-ssh
   - name: annotations
@@ -99,7 +99,7 @@ metadata:
 spec:
   params:
   - name: gitops_repository
-    value: https://github.com/vipinms2/gitops/small/where-for-dinner-search-proc
+    value: https://github.com/vipinms2/gitops_small
   - name: gitops_ssh_secret
     value: git-ssh
   - name: annotations
@@ -145,7 +145,7 @@ metadata:
 spec:
   params:
   - name: gitops_repository
-    value: https://github.com/vipinms2/gitops/small/where-for-dinner-availability
+    value: https://github.com/vipinms2/gitops_small
   - name: gitops_ssh_secret
     value: git-ssh
   - name: annotations
@@ -196,7 +196,7 @@ spec:
       value: dist
   params:
   - name: gitops_repository
-    value: https://github.com/vipinms2/gitops/small/where-for-dinner-ui
+    value: https://github.com/vipinms2/gitops_small
   - name: gitops_ssh_secret
     value: git-ssh
   - name: annotations
