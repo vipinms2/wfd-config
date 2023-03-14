@@ -12,12 +12,8 @@ metadata:
     apps.tanzu.vmware.com/auto-configure-actuators: "true"
 spec:
   params:
-  - name: gitops_server_address
-    value: https://github.com/
-  - name: gitops_repository_owner
-    value: vipinms2
-  - name: gitops_repository_name
-    value: gitops
+  - name: gitops_repository
+    value: https://github.com/vipinms2/where-for-dinner-recycle
   - name: gitops_ssh_secret
     value: git-ssh
   - name: annotations
@@ -56,12 +52,8 @@ metadata:
     apps.tanzu.vmware.com/auto-configure-actuators: "true"
 spec:
   params:
-  - name: gitops_server_address
-    value: https://github.com/
-  - name: gitops_repository_owner
-    value: vipinms2
-  - name: gitops_repository_name
-    value: gitops
+  - name: gitops_repository
+    value: https://github.com/vipinms2/where-for-dinner-search-recycle
   - name: gitops_ssh_secret
     value: git-ssh
   - name: ports
@@ -106,12 +98,8 @@ metadata:
     apps.tanzu.vmware.com/auto-configure-actuators: "true"
 spec:
   params:
-  - name: gitops_server_address
-    value: https://github.com/
-  - name: gitops_repository_owner
-    value: vipinms2
-  - name: gitops_repository_name
-    value: gitops
+  - name: gitops_repository
+    value: https://github.com/vipinms2/where-for-dinner-search-proc-recycle
   - name: gitops_ssh_secret
     value: git-ssh
   - name: annotations
@@ -156,12 +144,8 @@ metadata:
     apps.tanzu.vmware.com/auto-configure-actuators: "true"
 spec:
   params:
-  - name: gitops_server_address
-    value: https://github.com/
-  - name: gitops_repository_owner
-    value: vipinms2
-  - name: gitops_repository_name
-    value: gitops
+  - name: gitops_repository
+    value: https://github.com/vipinms2/where-for-dinner-availability-recycle
   - name: gitops_ssh_secret
     value: git-ssh
   - name: ports
@@ -211,12 +195,8 @@ spec:
     - name: BP_WEB_SERVER_ROOT
       value: dist
   params:
-  - name: gitops_server_address
-    value: https://github.com/
-  - name: gitops_repository_owner
-    value: vipinms2
-  - name: gitops_repository_name
-    value: gitops
+  - name: gitops_repository
+    value: https://github.com/vipinms2/where-for-dinner-ui-recycle
   - name: gitops_ssh_secret
     value: git-ssh
   - name: ports
