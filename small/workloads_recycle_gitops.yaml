@@ -20,6 +20,8 @@ spec:
     value: gitops
   - name: gitops_ssh_secret
     value: git-ssh
+  - name: gitops_server_kind
+    value: github
   - name: annotations
     value:
       autoscaling.knative.dev/minScale: "1"
@@ -64,6 +66,8 @@ spec:
     value: gitops
   - name: gitops_ssh_secret
     value: git-ssh
+  - name: gitops_server_kind
+    value: github
   - name: ports
     value:
     - port: 80
@@ -114,6 +118,8 @@ spec:
     value: gitops
   - name: gitops_ssh_secret
     value: git-ssh
+  - name: gitops_server_kind
+    value: github
   - name: annotations
     value:
       autoscaling.knative.dev/minScale: "1"
@@ -164,6 +170,8 @@ spec:
     value: gitops
   - name: gitops_ssh_secret
     value: git-ssh
+  - name: gitops_server_kind
+    value: github
   - name: ports
     value:
     - port: 80
@@ -219,6 +227,8 @@ spec:
     value: gitops
   - name: gitops_ssh_secret
     value: git-ssh
+  - name: gitops_server_kind
+    value: github
   - name: ports
     value:
     - port: 80
