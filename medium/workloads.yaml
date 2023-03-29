@@ -32,7 +32,7 @@ spec:
     git:
       url: #@ data.values.gitRepository
       ref:
-        branch: main
+        branch: master
     subPath: where-for-dinner-api-gateway
 ---
 apiVersion: carto.run/v1alpha1
@@ -82,7 +82,7 @@ spec:
     git:
       url: #@ data.values.gitRepository
       ref:
-        branch: main
+        branch: master
     subPath: where-for-dinner-search
 ---
 apiVersion: carto.run/v1alpha1
@@ -119,7 +119,7 @@ spec:
     git:
       url: #@ data.values.gitRepository
       ref:
-        branch: main
+        branch: master
     subPath: where-for-dinner-search-proc
 ---
 apiVersion: carto.run/v1alpha1
@@ -156,7 +156,7 @@ spec:
     git:
       url: #@ data.values.gitRepository
       ref:
-        branch: main
+        branch: master
     subPath: where-for-dinner-notify
 ---
 apiVersion: carto.run/v1alpha1
@@ -203,7 +203,7 @@ spec:
     git:
       url: #@ data.values.gitRepository
       ref:
-        branch: main
+        branch: master
     subPath: where-for-dinner-availability
 ---
 apiVersion: carto.run/v1alpha1
@@ -241,5 +241,5 @@ spec:
     git:
       url: #@ data.values.gitRepository
       ref:
-        branch: main
+        branch: master
     subPath: where-for-dinner-ui

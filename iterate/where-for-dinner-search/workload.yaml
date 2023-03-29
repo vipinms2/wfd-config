@@ -33,5 +33,5 @@ spec:
     git:
       url: <https URL for your generated project's Git repository>
       ref:
-        branch: main
+        branch: master
     subPath: where-for-dinner-search
