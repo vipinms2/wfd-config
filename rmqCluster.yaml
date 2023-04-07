@@ -15,4 +15,4 @@ spec:
     limits:
       cpu: 200m
   imagePullSecrets:
-  - name: tanzunet-creds
+  - name: registries-credentials
