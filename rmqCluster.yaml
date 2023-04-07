@@ -14,3 +14,5 @@ spec:
       cpu: 200m
     limits:
       cpu: 200m
+  imagePullSecrets:
+  - name: tanzunet-creds
