@@ -17,7 +17,7 @@ spec:
   - name: gitops_repository_owner
     value: vipinms2
   - name: gitops_repository_name
-    value: #@ data.values.gitopsRepository
+    value: #@ data.values.gitopsRepositoryName
   - name: gitops_ssh_secret
     value: git-ssh
   - name: gitops_server_kind
@@ -66,7 +66,7 @@ spec:
   - name: gitops_repository_owner
     value: vipinms2
   - name: gitops_repository_name
-    value: #@ data.values.gitopsRepository
+    value: #@ data.values.gitopsRepositoryName
   - name: gitops_ssh_secret
     value: git-ssh
   - name: gitops_server_kind
@@ -129,7 +129,7 @@ spec:
   - name: gitops_repository_owner
     value: vipinms2
   - name: gitops_repository_name
-    value: #@ data.values.gitopsRepository
+    value: #@ data.values.gitopsRepositoryName
   - name: gitops_ssh_secret
     value: git-ssh
   - name: gitops_server_kind
@@ -185,7 +185,7 @@ spec:
   - name: gitops_repository_owner
     value: vipinms2
   - name: gitops_repository_name
-    value: #@ data.values.gitopsRepository
+    value: #@ data.values.gitopsRepositoryName
   - name: gitops_ssh_secret
     value: git-ssh
   - name: gitops_server_kind
@@ -235,7 +235,7 @@ spec:
   - name: gitops_repository_owner
     value: vipinms2
   - name: gitops_repository_name
-    value: #@ data.values.gitopsRepository
+    value: #@ data.values.gitopsRepositoryName
   - name: gitops_ssh_secret
     value: git-ssh
   - name: gitops_server_kind
@@ -288,7 +288,7 @@ spec:
   - name: gitops_repository_owner
     value: vipinms2
   - name: gitops_repository_name
-    value: #@ data.values.gitopsRepository
+    value: #@ data.values.gitopsRepositoryName
   - name: gitops_ssh_secret
     value: git-ssh
   - name: gitops_server_kind
@@ -330,7 +330,7 @@ spec:
   - name: gitops_repository_owner
     value: vipinms2
   - name: gitops_repository_name
-    value: #@ data.values.gitopsRepository
+    value: #@ data.values.gitopsRepositoryName
   - name: gitops_ssh_secret
     value: git-ssh
   - name: gitops_server_kind
