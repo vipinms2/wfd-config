@@ -52,10 +52,6 @@ metadata:
     apps.tanzu.vmware.com/auto-configure-actuators: "true"
 spec:
   params:
-  - name: gitops_repository
-    value: https://github.com/vipinms2/gitops.git
-  - name: gitops_ssh_secret
-    value: git-ssh
   - name: annotations
     value:
       autoscaling.knative.dev/minScale: "1"
@@ -98,10 +94,6 @@ metadata:
     apps.tanzu.vmware.com/auto-configure-actuators: "true"
 spec:
   params:
-  - name: gitops_repository
-    value: https://github.com/vipinms2/gitops.git
-  - name: gitops_ssh_secret
-    value: git-ssh
   - name: annotations
     value:
       autoscaling.knative.dev/minScale: "1"
@@ -144,10 +136,6 @@ metadata:
     apps.tanzu.vmware.com/auto-configure-actuators: "true"
 spec:
   params:
-  - name: gitops_repository
-    value: https://github.com/vipinms2/gitops.git
-  - name: gitops_ssh_secret
-    value: git-ssh
   - name: annotations
     value:
       autoscaling.knative.dev/minScale: "1"
@@ -195,10 +183,6 @@ spec:
     - name: BP_WEB_SERVER_ROOT
       value: dist
   params:
-  - name: gitops_repository
-    value: https://github.com/vipinms2/gitops.git
-  - name: gitops_ssh_secret
-    value: git-ssh
   - name: annotations
     value:
       autoscaling.knative.dev/minScale: "1"
