@@ -4,20 +4,20 @@
 apiVersion: services.apps.tanzu.vmware.com/v1alpha1
 kind: ResourceClaimPolicy
 metadata:
-  name: where-for-dinner-postgres-cross-namespace
+  name: where-for-dinner-bitnami-redis-cross-namespace
   namespace: #@ data.values.workloadNamespace
 spec:
   consumingNamespaces:
-  - #@ data.values.serviceNamespace
+  - #@ data.values.workloadNamespace
   subject:
-    group: sql.tanzu.vmware.com
-    kind: Postgres
+    group: ""
+    kind: Secret
 ---
 apiVersion: services.apps.tanzu.vmware.com/v1alpha1
 kind: ClassClaim
 metadata:
-  name: postgres-where-for-dinner
+  name: redis-where-for-dinner
   namespace: #@ data.values.workloadNamespace
 spec:
   classRef:
-    name: postgres-where-for-dinner
+    name: bitnami-redis-where-for-dinner

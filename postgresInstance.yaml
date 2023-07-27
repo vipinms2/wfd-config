@@ -1,17 +1,45 @@
 #@ load("@ytt:data", "data")
----
+
 apiVersion: sql.tanzu.vmware.com/v1
 kind: Postgres
 metadata:
   name: postgres-where-for-dinner
   namespace: #@ data.values.workloadNamespace
+  labels:
+    services.apps.tanzu.vmware.com/class: postgres-where-for-dinner  
 spec:
-  storageClassName: #@ data.values.storageClassName
-  monitorStorageClassName: #@ data.values.storageClassName
   memory: 800Mi
   cpu: "0.8"
   storageSize: 800M
   highAvailability:
     enabled: false
+  storageClassName: #@ data.values.storageClassName
+  monitorStorageClassName: #@ data.values.storageClassName
   imagePullSecret:
     name: registries-credentials
+        
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: postgres-app-operator-reader
+  labels:
+    servicebinding.io/controller: "true"
+rules:
+- apiGroups: ["sql.tanzu.vmware.com"]
+  resources: ["postgres"]
+  verbs: ["get", "list", "watch"]
+---
+apiVersion: services.apps.tanzu.vmware.com/v1alpha1
+kind: ClusterInstanceClass
+metadata:
+  name: postgres-where-for-dinner
+spec:
+  description:
+    short: Where For Dinner Postgres DB Instances
+  pool:
+    group: sql.tanzu.vmware.com
+    kind: Postgres  
+    labelSelector:
+      matchLabels:
+        services.apps.tanzu.vmware.com/class: postgres-where-for-dinner  

@@ -1,4 +1,5 @@
 #@ load("@ytt:data", "data")
+
 ---
 apiVersion: carto.run/v1alpha1
 kind: Workload
@@ -8,15 +9,17 @@ metadata:
   labels:
     apps.tanzu.vmware.com/workload-type: web
     app.kubernetes.io/part-of: where-for-dinner-api-gateway
-    apps.tanzu.vmware.com/has-tests: "true"
     apps.tanzu.vmware.com/auto-configure-actuators: "true"
+    apps.tanzu.vmware.com/has-tests: "true"
 spec:
+  env: null
   params:
   - name: annotations
     value:
       autoscaling.knative.dev/minScale: "1"
       autoscaling.knative.dev/target: "200"
       autoscaling.knative.dev/maxScale: "4"
+  serviceClaims: null
   resources:     
     requests:         
       memory: "500M"
@@ -44,28 +47,37 @@ metadata:
     apps.tanzu.vmware.com/workload-type: web
     app.kubernetes.io/part-of: where-for-dinner-search
     networking.knative.dev/visibility: cluster-local
-    apps.tanzu.vmware.com/has-tests: "true"
     apps.tanzu.vmware.com/auto-configure-actuators: "true"
+    apps.tanzu.vmware.com/has-tests: "true"
+    apis.apps.tanzu.vmware.com/register-api: "true" 
 spec:
   env:
   - name: spring_profiles_active
-    value: #@ data.values.database
+    value: postgres,rabbitmq
   params:
   - name: annotations
     value:
+      autoscaling.knative.dev/minScale: "1"
       autoscaling.knative.dev/target: "200"
       autoscaling.knative.dev/maxScale: "4"
-      autoscaling.knative.dev/minScale: "1"
+  - name: api_descriptor
+    value:
+      type: openapi 
+      location:
+        path: "/v3/api-docs"
+      system: where-for-dinner
+      owner: where-for-dinner-team  
+      description: "Core Where for Dinner service for submitting searches and parameters" 
   serviceClaims:
   - name: rmq
     ref:
       apiVersion: services.apps.tanzu.vmware.com/v1alpha1
-      kind: ResourceClaim
+      kind: ClassClaim
       name: rmq-where-for-dinner
   - name: db
     ref:
       apiVersion: services.apps.tanzu.vmware.com/v1alpha1
-      kind: ResourceClaim
+      kind: ClassClaim
       name: #@ data.values.database + "-where-for-dinner"
   resources:     
     requests:         
@@ -85,6 +97,7 @@ spec:
         branch: main
     subPath: where-for-dinner-search
 ---
+
 apiVersion: carto.run/v1alpha1
 kind: Workload
 metadata:
@@ -94,9 +107,12 @@ metadata:
     apps.tanzu.vmware.com/workload-type: web
     app.kubernetes.io/part-of: where-for-dinner-search-proc
     networking.knative.dev/visibility: cluster-local
-    apps.tanzu.vmware.com/has-tests: "true"
     apps.tanzu.vmware.com/auto-configure-actuators: "true"
+    apps.tanzu.vmware.com/has-tests: "true"
 spec:
+  env:
+  - name: spring_profiles_active
+    value: crawler,redis,rabbitmq
   build:
     env:
     - name: BP_MAVEN_BUILD_ARGUMENTS
@@ -106,17 +122,20 @@ spec:
   params:
   - name: annotations
     value:
+      autoscaling.knative.dev/minScale: "1"
       autoscaling.knative.dev/target: "200"
       autoscaling.knative.dev/maxScale: "4"
-  env:
-  - name: spring_profiles_active
-    value: crawler,redis
   serviceClaims:
-  - name: redis
+  - name: rmq
     ref:
-      apiVersion: v1
-      kind: Secret
-      name: redis-where-for-dinner-redis-secret
+      apiVersion: services.apps.tanzu.vmware.com/v1alpha1
+      kind: ClassClaim
+      name: rmq-where-for-dinner
+  - name: cache
+    ref:
+      apiVersion: services.apps.tanzu.vmware.com/v1alpha1
+      kind: ClassClaim
+      name: redis-where-for-dinner
   resources:     
     requests:         
       memory: "500M"
@@ -130,7 +149,9 @@ spec:
       ref:
         branch: main
     subPath: where-for-dinner-search-proc
+
 ---
+
 apiVersion: carto.run/v1alpha1
 kind: Workload
 metadata:
@@ -140,9 +161,12 @@ metadata:
     apps.tanzu.vmware.com/workload-type: web
     app.kubernetes.io/part-of: where-for-dinner-notify
     networking.knative.dev/visibility: cluster-local
-    apps.tanzu.vmware.com/has-tests: "true"
     apps.tanzu.vmware.com/auto-configure-actuators: "true"
+    apps.tanzu.vmware.com/has-tests: "true"
 spec:
+  env:
+  - name: spring_profiles_active
+    value: rabbitmq
   build:
     env:
     - name: BP_MAVEN_BUILD_ARGUMENTS
@@ -154,6 +178,12 @@ spec:
     value:
       autoscaling.knative.dev/target: "200"
       autoscaling.knative.dev/maxScale: "4"
+  serviceClaims: 
+  - name: rmq
+    ref:
+      apiVersion: services.apps.tanzu.vmware.com/v1alpha1
+      kind: ClassClaim
+      name: rmq-where-for-dinner
   resources:     
     requests:         
       memory: "500M"
@@ -168,6 +198,7 @@ spec:
         branch: main
     subPath: where-for-dinner-notify
 ---
+
 apiVersion: carto.run/v1alpha1
 kind: Workload
 metadata:
@@ -177,8 +208,9 @@ metadata:
     apps.tanzu.vmware.com/workload-type: web
     app.kubernetes.io/part-of: where-for-dinner-availability
     networking.knative.dev/visibility: cluster-local
-    apps.tanzu.vmware.com/has-tests: "true"
     apps.tanzu.vmware.com/auto-configure-actuators: "true"
+    apps.tanzu.vmware.com/has-tests: "true"
+    apis.apps.tanzu.vmware.com/register-api: "true"
 spec:
   build:
     env:
@@ -188,18 +220,31 @@ spec:
       value: "17"
   env:
   - name: spring_profiles_active
-    value: #@ data.values.database
+    value: postgres,rabbitmq
   params:
   - name: annotations
     value:
+      autoscaling.knative.dev/minScale: "1"
       autoscaling.knative.dev/target: "200"
       autoscaling.knative.dev/maxScale: "4"
-      autoscaling.knative.dev/minScale: "1"
+  - name: api_descriptor
+    value:
+      type: openapi 
+      location:
+        path: "/v3/api-docs"
+      system: where-for-dinner
+      owner: where-for-dinner-team  
+      description: "Core Where For Dinner service for retrieving dining availability" 
   serviceClaims:
+  - name: rmq
+    ref:
+      apiVersion: services.apps.tanzu.vmware.com/v1alpha1
+      kind: ClassClaim
+      name: rmq-where-for-dinner
   - name: db
     ref:
       apiVersion: services.apps.tanzu.vmware.com/v1alpha1
-      kind: ResourceClaim
+      kind: ClassClaim
       name: #@ data.values.database + "-where-for-dinner"
   resources:     
     requests:         
@@ -214,6 +259,7 @@ spec:
       ref:
         branch: main
     subPath: where-for-dinner-availability
+
 ---
 apiVersion: carto.run/v1alpha1
 kind: Workload
@@ -232,11 +278,12 @@ spec:
       value: build
     - name: BP_WEB_SERVER_ROOT
       value: dist
+  env: 
+  - name: REACT_APP_PROFILE
+    value: nonsecure
   params:
   - name: annotations
     value:
-      autoscaling.knative.dev/target: "200"
-      autoscaling.knative.dev/maxScale: "4"
       autoscaling.knative.dev/minScale: "1"
   resources:     
     requests:         
@@ -252,6 +299,7 @@ spec:
         branch: main
     subPath: where-for-dinner-ui
 ---
+
 apiVersion: carto.run/v1alpha1
 kind: Workload
 metadata:
@@ -260,8 +308,8 @@ metadata:
   labels:
     apps.tanzu.vmware.com/workload-type: server
     app.kubernetes.io/part-of: where-for-dinner-crawler
-    apps.tanzu.vmware.com/has-tests: "true"
     apps.tanzu.vmware.com/auto-configure-actuators: "true"
+    apps.tanzu.vmware.com/has-tests: "true"
 spec:
   params:
   - name: ports

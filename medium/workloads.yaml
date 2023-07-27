@@ -11,12 +11,14 @@ metadata:
     apps.tanzu.vmware.com/has-tests: "true"
     apps.tanzu.vmware.com/auto-configure-actuators: "true"
 spec:
+  env: null
   params:
   - name: annotations
     value:
       autoscaling.knative.dev/minScale: "1"
       autoscaling.knative.dev/target: "200"
       autoscaling.knative.dev/maxScale: "4"
+  serviceClaims: null
   resources:     
     requests:         
       memory: "500M"
@@ -46,26 +48,35 @@ metadata:
     networking.knative.dev/visibility: cluster-local
     apps.tanzu.vmware.com/has-tests: "true"
     apps.tanzu.vmware.com/auto-configure-actuators: "true"
+    apis.apps.tanzu.vmware.com/register-api: "true"   
 spec:
   env:
   - name: spring_profiles_active
-    value: #@ data.values.database
+    value: mysql,rabbitmq
   params:
   - name: annotations
     value:
+      autoscaling.knative.dev/minScale: "1"
       autoscaling.knative.dev/target: "200"
       autoscaling.knative.dev/maxScale: "4"
-      autoscaling.knative.dev/minScale: "1"
+  - name: api_descriptor
+    value:
+      type: openapi 
+      location:
+        path: "/v3/api-docs"
+      system: where-for-dinner
+      owner: where-for-dinner-team  
+      description: "Core Where for Dinner service for submitting searches and parameters" 
   serviceClaims:
   - name: rmq
     ref:
       apiVersion: services.apps.tanzu.vmware.com/v1alpha1
-      kind: ResourceClaim
+      kind: ClassClaim
       name: rmq-where-for-dinner
   - name: db
     ref:
       apiVersion: services.apps.tanzu.vmware.com/v1alpha1
-      kind: ResourceClaim
+      kind: ClassClaim
       name: #@ data.values.database + "-where-for-dinner"
   resources:     
     requests:         
@@ -106,6 +117,7 @@ spec:
   params:
   - name: annotations
     value:
+      autoscaling.knative.dev/minScale: "1"
       autoscaling.knative.dev/target: "200"
       autoscaling.knative.dev/maxScale: "4"
   resources:     
@@ -170,6 +182,7 @@ metadata:
     networking.knative.dev/visibility: cluster-local
     apps.tanzu.vmware.com/has-tests: "true"
     apps.tanzu.vmware.com/auto-configure-actuators: "true"
+    apis.apps.tanzu.vmware.com/register-api: "true" 
 spec:
   build:
     env:
@@ -183,14 +196,22 @@ spec:
   params:
   - name: annotations
     value:
+      autoscaling.knative.dev/minScale: "1"
       autoscaling.knative.dev/target: "200"
       autoscaling.knative.dev/maxScale: "4"
-      autoscaling.knative.dev/minScale: "1"
+  - name: api_descriptor
+    value:
+      type: openapi 
+      location:
+        path: "/v3/api-docs"
+      system: where-for-dinner
+      owner: where-for-dinner-team  
+      description: "Core Where For Dinner service for retrieving dining availability"
   serviceClaims:
   - name: db
     ref:
       apiVersion: services.apps.tanzu.vmware.com/v1alpha1
-      kind: ResourceClaim
+      kind: ClassClaim
       name: #@ data.values.database + "-where-for-dinner"
   resources:     
     requests:         
@@ -216,7 +237,6 @@ metadata:
     app.kubernetes.io/part-of: where-for-dinner-ui
     networking.knative.dev/visibility: cluster-local
     apps.tanzu.vmware.com/has-tests: "true"
-    apps.tanzu.vmware.com/auto-configure-actuators: "true"
 spec:
   build:
     env:
@@ -224,11 +244,12 @@ spec:
       value: build
     - name: BP_WEB_SERVER_ROOT
       value: dist
+  env: 
+  - name: REACT_APP_PROFILE
+    value: nonsecure
   params:
   - name: annotations
     value:
-      autoscaling.knative.dev/target: "200"
-      autoscaling.knative.dev/maxScale: "4"
       autoscaling.knative.dev/minScale: "1"
   resources:     
     requests:         

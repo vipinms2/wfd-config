@@ -5,14 +5,41 @@ kind: RabbitmqCluster
 metadata:
   annotations:
     rabbitmq.com/topology-allowed-namespaces: '*'
+  labels:
+    services.apps.tanzu.vmware.com/class: rmq-where-for-dinner
   name: rmq-where-for-dinner
   namespace: #@ data.values.workloadNamespace
 spec:
   replicas: 1
+  imagePullSecrets:
+  - name: registries-credentials
   resources:
     requests:
       cpu: 200m
     limits:
       cpu: 200m
-  imagePullSecrets:
-  - name: registries-credentials
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: where-for-dinner-rabbitmqcluster-app-operator-reader
+  labels:
+    servicebinding.io/controller: "true"
+rules:
+- apiGroups: ["rabbitmq.com"]
+  resources: ["rabbitmqclusters"]
+  verbs: ["get", "list", "watch"]
+---
+apiVersion: services.apps.tanzu.vmware.com/v1alpha1
+kind: ClusterInstanceClass
+metadata:
+  name: rmq-where-for-dinner
+spec:
+  description:
+    short: Where For Dinner RabbitMQ Clusters
+  pool:
+    group: rabbitmq.com
+    kind: RabbitmqCluster
+    labelSelector:
+      matchLabels:
+        services.apps.tanzu.vmware.com/class: rmq-where-for-dinner
