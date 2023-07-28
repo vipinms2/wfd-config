@@ -5,8 +5,6 @@ kind: MySQL
 metadata:
   name: mysql-where-for-dinner
   namespace: #@ data.values.workloadNamespace
-  labels:
-    services.apps.tanzu.vmware.com/class: mysql-where-for-dinner 
 spec:
   imagePullSecretName: registries-credentials
   databasePodConfig:
@@ -53,28 +51,3 @@ spec:
       operator: Exists
       effect: NoExecute
       tolerationSeconds: 3600
----
-apiVersion: rbac.authorization.k8s.io/v1
-kind: ClusterRole
-metadata:
-  name: mysql-app-operator-reader
-  labels:
-    servicebinding.io/controller: "true"
-rules:
-- apiGroups: ["with.sql.tanzu.vmware.com"]
-  resources: ["mysqls"]
-  verbs: ["get", "list", "watch"]
----
-apiVersion: services.apps.tanzu.vmware.com/v1alpha1
-kind: ClusterInstanceClass
-metadata:
-  name: mysql-where-for-dinner
-spec:
-  description:
-    short: Where For Dinner MySQL DB Instances
-  pool:
-    group: with.sql.tanzu.vmware.com
-    kind: MySQL  
-    labelSelector:
-      matchLabels:
-        services.apps.tanzu.vmware.com/class: mysql-where-for-dinner  
