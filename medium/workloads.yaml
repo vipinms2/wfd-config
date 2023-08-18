@@ -99,8 +99,6 @@ metadata:
 spec:
   build:
     env:
-    - name: BP_MAVEN_BUILD_ARGUMENTS
-      value: -P native -Dmaven.test.skip=true --no-transfer-progress package
     - name: BP_JVM_VERSION
       value: "17"
   params:
@@ -136,8 +134,6 @@ metadata:
 spec:
   build:
     env:
-    - name: BP_MAVEN_BUILD_ARGUMENTS
-      value: -P native -Dmaven.test.skip=true --no-transfer-progress package
     - name: BP_JVM_VERSION
       value: "17"
   params:
