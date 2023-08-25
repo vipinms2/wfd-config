@@ -15,7 +15,7 @@ spec:
   - name: gitops_repository
     value: https://github.com/vipinms2/gitops.git
   - name: gitops_ssh_secret
-    value: git-ssh
+    value: git-secret
   - name: annotations
     value:
       autoscaling.knative.dev/minScale: "1"
