@@ -12,8 +12,6 @@ metadata:
     apps.tanzu.vmware.com/auto-configure-actuators: "true"
 spec:
   params:
-  - name: gitops_ssh_secret
-    value: git-secret
   - name: annotations
     value:
       autoscaling.knative.dev/minScale: "1"
@@ -50,8 +48,6 @@ metadata:
     apps.tanzu.vmware.com/auto-configure-actuators: "true"
 spec:
   params:
-  - name: gitops_ssh_secret
-    value: git-secret
   - name: ports
     value:
     - port: 80
@@ -94,8 +90,6 @@ metadata:
     apps.tanzu.vmware.com/auto-configure-actuators: "true"
 spec:
   params:
-  - name: gitops_ssh_secret
-    value: git-secret
   - name: annotations
     value:
       autoscaling.knative.dev/minScale: "1"
@@ -138,8 +132,6 @@ metadata:
     apps.tanzu.vmware.com/auto-configure-actuators: "true"
 spec:
   params:
-  - name: gitops_ssh_secret
-    value: git-secret
   - name: ports
     value:
     - port: 80
@@ -187,8 +179,6 @@ spec:
     - name: BP_WEB_SERVER_ROOT
       value: dist
   params:
-  - name: gitops_ssh_secret
-    value: git-secret
   - name: ports
     value:
     - port: 80
