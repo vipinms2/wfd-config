@@ -106,10 +106,16 @@ spec:
     value:
       autoscaling.knative.dev/target: "200"
       autoscaling.knative.dev/maxScale: "4"
+      autoscaling.knative.dev/minScale: "1"
   env:
   - name: spring_profiles_active
     value: crawler,redis
   serviceClaims:
+  - name: rmq
+    ref:
+      apiVersion: services.apps.tanzu.vmware.com/v1alpha1
+      kind: ResourceClaim
+      name: rmq-where-for-dinner
   - name: redis
     ref:
       apiVersion: v1
@@ -150,6 +156,13 @@ spec:
     value:
       autoscaling.knative.dev/target: "200"
       autoscaling.knative.dev/maxScale: "4"
+      autoscaling.knative.dev/minScale: "1"
+  serviceClaims:
+  - name: rmq
+    ref:
+      apiVersion: services.apps.tanzu.vmware.com/v1alpha1
+      kind: ResourceClaim
+      name: rmq-where-for-dinner
   resources:     
     requests:         
       memory: "500M"
@@ -190,6 +203,11 @@ spec:
       autoscaling.knative.dev/maxScale: "4"
       autoscaling.knative.dev/minScale: "1"
   serviceClaims:
+  - name: rmq
+    ref:
+      apiVersion: services.apps.tanzu.vmware.com/v1alpha1
+      kind: ResourceClaim
+      name: rmq-where-for-dinner
   - name: db
     ref:
       apiVersion: services.apps.tanzu.vmware.com/v1alpha1
