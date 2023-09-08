@@ -13,7 +13,7 @@ metadata:
 spec:
   params:
   - name: gitops_repository
-    value: https://github.com/vipinms2/gitops.git
+    value: https://github.com/taplongevity/gitops.git
   - name: gitops_ssh_secret
     value: git-ssh
   - name: annotations
