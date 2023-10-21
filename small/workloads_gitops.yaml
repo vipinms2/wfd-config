@@ -21,7 +21,7 @@ spec:
   - name: gitops_ssh_secret
     value: git-secret
   - name: gitops_server_kind
-    value: github
+    value: #@ data.values.gitopsServerKind
   - name: annotations
     value:
       autoscaling.knative.dev/minScale: "1"
