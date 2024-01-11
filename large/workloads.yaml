@@ -29,7 +29,7 @@ spec:
   build:
     env:
       - name: BP_JVM_VERSION
-        value: "17"  
+        value: "21"  
   source:
     git:
       url: #@ data.values.gitRepository
@@ -81,7 +81,7 @@ spec:
   build:
     env:
       - name: BP_JVM_VERSION
-        value: "17"  
+        value: "21"  
   source:
     git:
       url: #@ data.values.gitRepository
@@ -104,7 +104,7 @@ spec:
   build:
     env:
     - name: BP_JVM_VERSION
-      value: "17"
+      value: "21"
   params:
   - name: gitops_ssh_secret
     value: git-secret
@@ -150,7 +150,7 @@ spec:
   build:
     env:
     - name: BP_JVM_VERSION
-      value: "17"
+      value: "21"
   params:
   - name: gitops_ssh_secret
     value: git-secret
@@ -187,7 +187,7 @@ spec:
   build:
     env:
     - name: BP_JVM_VERSION
-      value: "17"
+      value: "21"
   env:
   - name: spring_profiles_active
     value: #@ data.values.database
@@ -287,7 +287,7 @@ spec:
   build:
     env:
     - name: BP_JVM_VERSION
-      value: "17"
+      value: "21"
   source:
     git:
       url: #@ data.values.gitRepository
