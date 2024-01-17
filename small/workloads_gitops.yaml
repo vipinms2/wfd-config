@@ -37,7 +37,7 @@ spec:
   build:
     env:
       - name: BP_JVM_VERSION
-        value: "21"  
+        value: "17"  
   source:
     git:
       url: #@ data.values.gitRepository
@@ -79,7 +79,7 @@ spec:
   build:
     env:
       - name: BP_JVM_VERSION
-        value: "21"  
+        value: "17"  
   source:
     git:
       url: #@ data.values.gitRepository
@@ -121,7 +121,7 @@ spec:
   build:
     env:
       - name: BP_JVM_VERSION
-        value: "21"  
+        value: "17"  
   source:
     git:
       url: #@ data.values.gitRepository
@@ -163,7 +163,7 @@ spec:
   build:
     env:
       - name: BP_JVM_VERSION
-        value: "21"  
+        value: "17"  
   source:
     git:
       url: #@ data.values.gitRepository
